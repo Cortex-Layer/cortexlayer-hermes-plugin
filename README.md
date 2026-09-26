@@ -32,12 +32,13 @@ Once published to Hermes' plugin catalog:
 hermes plugins install cortexlayer
 ```
 
-Until then, install manually as a directory plugin: clone this repo's `plugins/memory/cortex/`
-into `$HERMES_HOME/plugins/cortex/` (or `./.hermes/plugins/cortex/` for a project-local
-install — note the on-disk directory keeps the shorter `cortex` name deliberately, to avoid
-colliding with this same plugin's own `import cortexlayer` for the client dependency; the
-provider still shows up and installs as `cortexlayer` everywhere else), and make sure
-`cortexlayer` is importable in whatever Python environment Hermes runs in:
+Until then, install manually as a directory plugin: clone this repo's
+`plugins/memory/cortexlayer/` into `$HERMES_HOME/plugins/cortexlayer/` (or
+`./.hermes/plugins/cortexlayer/` for a project-local install — the directory name must match
+`cortexlayer` exactly, since that's what `memory.provider: cortexlayer` in config.yaml
+actually resolves against; confirmed live via `hermes memory status`, which reports "Plugin:
+NOT installed" if the folder name doesn't match), and make sure `cortexlayer` is importable
+in whatever Python environment Hermes runs in:
 
 ```
 pip install cortexlayer
