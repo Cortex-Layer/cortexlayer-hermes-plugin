@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
-dependencies = ["cortexlayer[local]"]
+dependencies = ["cortexlayer"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
