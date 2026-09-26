@@ -8,3 +8,5 @@ description: >
 hooks:
   - on_session_end
   - on_pre_compress
+pip_dependencies:
+  - cortexlayer>=0.1.2,<0.3

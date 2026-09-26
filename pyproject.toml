@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
-dependencies = ["cortexlayer"]
+dependencies = ["cortexlayer>=0.1.2,<0.3"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
@@ -26,7 +26,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 # This repo isn't itself an importable library — it's a Hermes directory
-# plugin (plugins/memory/cortex/) installed via `hermes plugins install`
+# plugin (plugins/memory/cortexlayer/) installed via `hermes plugins install`
 # (git-clone, task 0088's locked distribution decision), not pip. This
 # pyproject.toml exists only so `pip install ".[dev]"` resolves dependencies
 # for local development/testing.
