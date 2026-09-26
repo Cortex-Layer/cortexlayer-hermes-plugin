@@ -11,6 +11,10 @@ This is a thin adapter over [`cortexlayer.CortexClient`](https://github.com/Cort
 — CortexLayer's hosted API client, API-key authenticated — no storage/retrieval logic lives
 here.
 
+For the shorter setup walkthrough, see [docs.cortexlayer.net/docs/agents/hermes](https://docs.cortexlayer.net/docs/agents/hermes)
+(also covers the alternative MCP tool-registration route). This README is the fuller,
+developer-facing reference — design decisions, what's unverified, how to run the tests.
+
 ## Status
 
 **Platform mode only (MVP decision, 2026-09-26)** — no local/embedded ("OSS") mode, unlike
