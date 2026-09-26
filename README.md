@@ -21,7 +21,8 @@ developer-facing reference — design decisions, what's unverified, how to run t
 mem0's Hermes integration which offers both plus a self-hosted-dashboard option. Needs a
 CortexLayer API key; there is no keyless local path in this plugin today. Implements the
 required lifecycle, the 5 memory tools, and the `on_session_end`/`on_pre_compress` hooks (see
-"Design decisions" below). Not yet submitted to Hermes' plugin catalog; not yet verified
+"Design decisions" below). Catalog PR open, not yet merged (Cortex-Layer/cortexlayer-hermes-plugin
+against NousResearch/hermes-agent, #124341); not yet verified
 against a live Hermes instance end to end.
 
 ## Install
