@@ -1,0 +1,10 @@
+name: cortex
+version: 0.1.0
+description: >
+  CortexLayer memory provider — linked-page memory with link-expansion
+  retrieval, wired into Hermes' automatic per-turn prefetch/sync instead of
+  the generic MCP tool registration (see cortex-backend's mcp_server.py for
+  that separate integration path).
+hooks:
+  - on_session_end
+  - on_pre_compress

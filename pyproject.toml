@@ -1,0 +1,33 @@
+[project]
+name = "cortexlayer-hermes-plugin"
+version = "0.1.0"
+description = "CortexLayer memory-provider plugin for Hermes (agent/memory_provider.py integration)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+dependencies = ["cortexlayer[local]"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.urls]
+Homepage = "https://www.cortexlayer.net"
+Documentation = "https://docs.cortexlayer.net"
+Repository = "https://github.com/Cortex-Layer/cortexlayer-hermes-plugin"
+Issues = "https://github.com/Cortex-Layer/cortexlayer-hermes-plugin/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# This repo isn't itself an importable library — it's a Hermes directory
+# plugin (plugins/memory/cortex/) installed via `hermes plugins install`
+# (git-clone, task 0088's locked distribution decision), not pip. This
+# pyproject.toml exists only so `pip install ".[dev]"` resolves dependencies
+# for local development/testing.
+packages = []

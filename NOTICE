@@ -1,0 +1,40 @@
+cortexlayer
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product includes software derived from Mem0:
+
+  Mem0 — https://github.com/mem0ai/mem0 (PyPI: mem0ai 2.1.0)
+  Author: Mem0 <support@mem0.ai>
+  Licensed under the Apache License, Version 2.0.
+
+The following files reproduce or adapt Mem0 source code or prompt text. Each
+carries a notice in its header describing what was changed, as required by the
+Apache License, Version 2.0, section 4.
+
+  src/cortexlayer/_engine/facts/additive_extraction_prompt.txt
+      Mem0's additive extraction system prompt (ADDITIVE_EXTRACTION_PROMPT from
+      mem0/configs/prompts.py). Copied unchanged.
+
+  src/cortexlayer/_engine/facts/prompts.py
+      Adapted from the user-prompt builder in mem0/configs/prompts.py
+      (generate_additive_extraction_prompt and helpers). Re-typed with type
+      hints; behavior unchanged.
+
+  src/cortexlayer/_engine/facts/entities.py
+      Adapted from mem0/utils/entity_extraction.py. The extraction heuristics are
+      unchanged; the two public entry points accept an optional spaCy pipeline and
+      no longer import mem0's model loader (which downloads a model at runtime).
+
+  src/cortexlayer/_engine/facts/scoring.py
+      Adapted from mem0/utils/scoring.py and Memory._compute_entity_boosts in
+      mem0/memory/main.py. Mem0's BM25 term never runs with its Chroma vector
+      store, so it is off by default; an optional keyword term uses our own
+      dependency-free BM25 (not Mem0's lemmatizer/normalisation) fused with the
+      same (semantic + keyword + entity) / max_possible formula.
+
+  src/cortexlayer/_engine/facts/engine.py
+      Implements the algorithm of Mem0's add/search pipeline (mem0/memory/main.py,
+      "V3 phased batch pipeline") on cortexlayer's own storage. See the module
+      docstring for the deliberate differences.
+
+cortexlayer does not depend on, import, or redistribute the mem0ai package.
