@@ -1,4 +1,4 @@
-name: cortex
+name: cortexlayer
 version: 0.1.0
 description: >
   CortexLayer memory provider — linked-page memory with link-expansion

@@ -21,13 +21,15 @@ to Hermes' plugin catalog; not yet verified against a live Hermes instance end t
 Once published to Hermes' plugin catalog:
 
 ```
-hermes plugins install cortex
+hermes plugins install cortexlayer
 ```
 
 Until then, install manually as a directory plugin: clone this repo's `plugins/memory/cortex/`
 into `$HERMES_HOME/plugins/cortex/` (or `./.hermes/plugins/cortex/` for a project-local
-install), and make sure `cortexlayer[local]` is importable in whatever Python environment
-Hermes runs in:
+install — note the on-disk directory keeps the shorter `cortex` name deliberately, to avoid
+colliding with this same plugin's own `import cortexlayer` for the engine dependency; the
+provider still shows up and installs as `cortexlayer` everywhere else), and make sure
+`cortexlayer[local]` is importable in whatever Python environment Hermes runs in:
 
 ```
 pip install "cortexlayer[local]"
@@ -37,7 +39,7 @@ pip install "cortexlayer[local]"
 automatically. Confirm this against a real Hermes instance before assuming the manual
 `pip install` step above is (or isn't) necessary.
 
-Then run `hermes memory setup` and select `cortex` as the provider.
+Then run `hermes memory setup` and select `cortexlayer` as the provider.
 
 ## Configuration
 

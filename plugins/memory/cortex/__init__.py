@@ -118,7 +118,16 @@ class CortexMemoryProvider(MemoryProvider):
     """Adapter over ``cortexlayer.Memory`` (facts backend) for Hermes'
     memory-provider slot."""
 
-    name = "cortex"
+    #: Displayed/catalog identifier (what `hermes memory setup` lists and
+    #: `hermes plugins install <name>` resolves) — deliberately NOT the same
+    #: as this directory's on-disk name (`plugins/memory/cortex/`). If
+    #: Hermes' loader ever adds `plugins/memory/` to sys.path and imports by
+    #: directory name, a directory literally named `cortexlayer` would
+    #: collide with this file's own `from cortexlayer import Memory` below —
+    #: it could shadow the real engine package with itself. The directory
+    #: stays `cortex`; everything user-facing (this name, plugin.yaml,
+    #: catalog entry, README) says `cortexlayer`.
+    name = "cortexlayer"
 
     #: Overridable by tests/subclasses to avoid needing a live LLM — v1 ships
     #: against "facts" per task 0088's acceptance criteria.
