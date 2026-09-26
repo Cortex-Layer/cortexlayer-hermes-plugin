@@ -1,6 +1,6 @@
 [project]
 name = "cortexlayer-hermes-plugin"
-version = "0.1.0"
+version = "0.1.1"
 description = "CortexLayer memory-provider plugin for Hermes (agent/memory_provider.py integration)."
 readme = "README.md"
 requires-python = ">=3.10"

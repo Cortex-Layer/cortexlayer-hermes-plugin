@@ -1,5 +1,5 @@
 name: cortexlayer
-version: 0.1.0
+version: 0.1.1
 description: >
   CortexLayer memory provider — linked-page memory with link-expansion
   retrieval, wired into Hermes' automatic per-turn prefetch/sync instead of
