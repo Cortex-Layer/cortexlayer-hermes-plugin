@@ -21,39 +21,29 @@ developer-facing reference — design decisions, what's unverified, how to run t
 mem0's Hermes integration which offers both plus a self-hosted-dashboard option. Needs a
 CortexLayer API key; there is no keyless local path in this plugin today. Implements the
 required lifecycle, the 5 memory tools, and the `on_session_end`/`on_pre_compress` hooks (see
-"Design decisions" below). Catalog PR open, not yet merged (Cortex-Layer/cortexlayer-hermes-plugin
-against NousResearch/hermes-agent, #124341); not yet verified
-against a live Hermes instance end to end.
+"Design decisions" below). In Hermes' plugin catalog as of
+[#124341](https://github.com/NousResearch/hermes-agent/pull/124341) (merged 2026-09-27);
+verified end to end against a live Hermes instance the same day.
 
 ## Install
 
-Once published to Hermes' plugin catalog:
-
 ```
 hermes plugins install cortexlayer
+hermes plugins enable cortexlayer
 ```
 
-Until then, install manually as a directory plugin: clone this repo's
-`plugins/memory/cortexlayer/` into `$HERMES_HOME/plugins/cortexlayer/` (or
-`./.hermes/plugins/cortexlayer/` for a project-local install — the directory name must match
-`cortexlayer` exactly, since that's what `memory.provider: cortexlayer` in config.yaml
-actually resolves against; confirmed live via `hermes memory status`, which reports "Plugin:
-NOT installed" if the folder name doesn't match), and make sure `cortexlayer` is importable
-in whatever Python environment Hermes runs in:
-
-```
-pip install cortexlayer
-```
-
-(No `[local]` extra needed — Platform mode only talks HTTP via `CortexClient`, which depends
-on nothing but `httpx`. The embedded engine's heavier deps, Chroma + spaCy, aren't pulled in.)
-
-**Unverified**: whether `hermes plugins install` resolves a plugin's own Python dependencies
-automatically. Confirm this against a real Hermes instance before assuming the manual
-`pip install` step above is (or isn't) necessary.
+`install` resolves this plugin's Python dependency (`cortexlayer`) automatically — no separate
+`pip install` step needed (confirmed live 2026-09-27). No `[local]` extra either way: Platform
+mode only talks HTTP via `CortexClient`, which depends on nothing but `httpx`. The embedded
+engine's heavier deps, Chroma + spaCy, aren't pulled in.
 
 Then run `hermes memory setup`, select `cortexlayer` as the provider, and paste an API key
 (create one at [cortexlayer.net](https://www.cortexlayer.net) under Keys).
+
+(A manual directory-plugin install still works if you're running against a fork/local checkout
+of this repo instead of the catalog: clone it and copy `plugins/memory/cortexlayer/` into
+`$HERMES_HOME/plugins/cortexlayer/` — the directory name must match `cortexlayer` exactly,
+since that's what `memory.provider: cortexlayer` in config.yaml resolves against.)
 
 ## Configuration
 
@@ -111,9 +101,9 @@ matching `cortex-backend`'s actual `/v1/*` shapes — no real network, no live s
 through a local test double for Hermes' `agent.memory_provider`/`agent.memory_manager` (see
 `tests/stub_hermes/` — **not** the real Hermes package; Hermes ships via a shell installer,
 not PyPI, so there is nothing to depend on for CI). That stub reproduces the dev guide's
-documented contract closely enough to exercise this plugin's own logic, but real
-verification against Hermes' actual base class, and against the real hosted API, only
-happens in a live end-to-end pass — not yet done for this repo.
+documented contract closely enough to exercise this plugin's own logic; real verification
+against Hermes' actual base class and the real hosted API happens in a live end-to-end pass,
+done 2026-09-26 (manual directory install) and again 2026-09-27 (real catalog install).
 
 ## License
 
